@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fera Search</title>
-    <!-- All CSS styles are identical to the previous version -->
     <style>
         * {
             margin: 0;
@@ -90,7 +89,6 @@
             height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            /* removed font-size */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -103,7 +101,6 @@
             transform: scale(1.1);
         }
         
-        /* New styles for SVG icons */
         .icon-btn svg {
             width: 20px;
             height: 20px;
@@ -122,7 +119,6 @@
         body.dark-mode .sun-icon {
             display: none;
         }
-        /* End new styles */
 
         .search-container {
             flex: 1;
@@ -432,7 +428,7 @@
             color: var(--text-primary);
             margin-bottom: 8px;
             line-height: 1.4;
-            height: 2.8em; /* 2 lines */
+            height: 2.8em;
             overflow: hidden;
         }
 
@@ -464,7 +460,6 @@
             margin-bottom: 10px;
         }
 
-        /* Settings Modal */
         .modal {
             display: none;
             position: fixed;
@@ -598,7 +593,6 @@
             justify-content: space-between;
         }
 
-        /* Translator Panel */
         .translator-panel {
             position: fixed;
             bottom: 20px;
@@ -754,14 +748,12 @@
                 </div>
             </div>
             <div class="header-actions">
-                <!-- New SVG icon for Translator -->
                 <button class="icon-btn" id="translatorBtn" title="Translator">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m4 13h4l4-10H5l4 10zM17 18H7" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-1.333 0-4 2.667-4 6s2.667 6 4 6 4-2.667 4-6-2.667-6-4-6zm0 0v2m0 8v2m0-6h.01M12 15a3 3 0 100-6 3 3 0 000 6z" />
                     </svg>
                 </button>
-                <!-- New SVG icons for Theme Toggle -->
                 <button class="icon-btn" id="themeToggle" title="Toggle Theme">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 12a5 5 0 100-10 5 5 0 000 10z" />
@@ -770,7 +762,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 </button>
-                <!-- New SVG icon for Settings -->
                 <button class="icon-btn" id="settingsBtn" title="Settings">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -808,11 +799,6 @@
                 <button class="close-btn" id="closeSettings">&times;</button>
             </div>
             
-            <!-- 
-                SearXNG URL input is removed, as we are using
-                the public URL directly.
-            -->
-
             <div class="setting-item">
                 <label>Search Language</label>
                 <select id="searchLanguage">
@@ -821,7 +807,6 @@
                     <option value="fr">French</option>
                     <option value="de">German</option>
                     <option value="it">Italian</option>
-                    <option value_comment="...add more languages as needed">...</option>
                 </select>
             </div>
 
@@ -891,9 +876,8 @@
     </div>
 
     <script>
-        // --- This is the new, public SearXNG URL you provided ---
-        const SEARXNG_URL = '/api/search.js';
-        // --------------------------------------------------------
+        // *** FIXED: Use correct API endpoint ***
+        const SEARXNG_URL = '/api/search';
 
         // Global settings object
         const settings = {
@@ -965,11 +949,9 @@
             if (settings.darkMode) {
                 document.body.classList.add('dark-mode');
                 darkModeToggle.classList.add('active');
-                // themeToggle.textContent is no longer needed, CSS handles the icon
             } else {
                 document.body.classList.remove('dark-mode');
                 darkModeToggle.classList.remove('active');
-                 // themeToggle.textContent is no longer needed, CSS handles the icon
             }
 
             if (settings.blurEnabled) {
@@ -978,7 +960,6 @@
                 blurToggle.classList.remove('active');
             }
             applyBlurEffect(settings.blurEnabled);
-
 
             if (settings.safeSearch) {
                 safeSearchToggle.classList.add('active');
@@ -1020,10 +1001,9 @@
             loading.classList.add('active');
             results.innerHTML = ''; // Clear previous results
 
-            const safeSearchValue = settings.safeSearch ? '1' : '0'; // 1 is moderate
+            const safeSearchValue = settings.safeSearch ? '1' : '0';
             
-            // *** URL CHANGE ***
-            // We are now calling the public SearXNG URL directly
+            // Build the parameters for our proxy API
             const params = new URLSearchParams({
                 q: query,
                 categories: category,
@@ -1032,8 +1012,8 @@
                 format: 'json'
             });
 
-            // This builds the full URL, e.g., https://searx.rhscz.eu/search?q=test...
-            const url = `${SEARXNG_URL}/search?${params.toString()}`;
+            // *** FIXED: Call our proxy API correctly ***
+            const url = `${SEARXNG_URL}?${params.toString()}`;
 
             try {
                 const response = await fetch(url);
@@ -1042,9 +1022,9 @@
                 }
                 const data = await response.json();
                 
-                if (data.results.length === 0) {
+                if (data.results && data.results.length === 0) {
                     displayNoResults();
-                } else {
+                } else if (data.results) {
                     if (category === 'images') {
                         displayImageResults(data.results);
                     } else if (category === 'videos') {
@@ -1052,16 +1032,17 @@
                     } else {
                         displayGeneralResults(data.results);
                     }
+                } else {
+                    displayNoResults();
                 }
 
             } catch (error) {
                 console.error("Search failed:", error);
-                // Updated error message
                 results.innerHTML = `<div class="no-results">
                     <div class="no-results-icon">❌</div>
                     <h3>Search Failed</h3>
-                    <p>Could not connect to ${SEARXNG_URL}.</p>
-                    <p>The public instance might be down. Please try again later.</p>
+                    <p>Could not connect to search service.</p>
+                    <p>Please try again later.</p>
                 </div>`;
             } finally {
                 loading.classList.remove('active');
@@ -1095,9 +1076,6 @@
         function displayImageResults(data) {
             let html = '<div class="image-results">';
             data.forEach(item => {
-                // *** FIX ***
-                // The URL from this server already includes the proxy,
-                // so we just use item.img_src directly.
                 const imgSrc = item.img_src; 
                 html += `
                     <div class="image-item">
@@ -1117,8 +1095,6 @@
         function displayVideoResults(data) {
             let html = '<div class="video-results">';
             data.forEach(item => {
-                 // *** FIX ***
-                // Same as images, the thumbnail URL is already correct.
                 const thumbSrc = item.thumbnail;
                 html += `
                     <div class="video-item">
@@ -1139,7 +1115,6 @@
             results.innerHTML = html;
         }
 
-
         // --- Translator Logic ---
         
         async function handleTranslate() {
@@ -1159,7 +1134,7 @@
                 categories: 'general',
                 format: 'json'
             });
-            const url = `${SEARXNG_URL}/search?${params.toString()}`;
+            const url = `${SEARXNG_URL}?${params.toString()}`;
 
             try {
                 const response = await fetch(url);
@@ -1242,7 +1217,7 @@
 
         // Theme toggle button
         themeToggle.addEventListener('click', () => {
-            darkModeToggle.click(); // Simulate a click on the settings toggle
+            darkModeToggle.click();
             saveSettings();
             applySettings();
         });
