@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 // The specific SearXNG instance the user requested
-const SEARXNG_URL = 'https://searx.rhscz.eu';
+const SEARXNG_URL = 'https://search.inetol.net/';
 
 /**
  * Vercel Serverless Function to proxy requests to SearXNG.
