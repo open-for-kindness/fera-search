@@ -1,5 +1,12 @@
 {
-  "name": "fera-search",
+  "name": "fera-search-proxy",
   "version": "1.0.0",
-  "type": "module"
+  "description": "Proxy for Fera Search application to call external APIs.",
+  "main": "api/search.js",
+  "dependencies": {
+    "node-fetch": "3.3.2"
+  },
+  "scripts": {
+    "start": "node index.html"
+  }
 }
