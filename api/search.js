@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
             format: 'json'
         });
 
-        const searxngUrl = `https://priv.au/search?${params.toString()}`;
+        const searxngUrl = `https://unvertiginously-photic-tobi.ngrok-free.dev?${params.toString()}`;
         console.log('SearXNG URL:', searxngUrl);
         
         // Fetch from SearXNG with proper headers
