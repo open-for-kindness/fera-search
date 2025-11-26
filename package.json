@@ -2,5 +2,7 @@
   "name": "fera-search-proxy",
   "version": "1.0.0",
   "description": "Proxy for Fera Search application",
-  "dependencies": {}
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
 }
