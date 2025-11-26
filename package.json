@@ -1,6 +1,8 @@
 {
-  "name": "fera-search-proxy",
+  "name": "fera-search",
   "version": "1.0.0",
-  "description": "Proxy for Fera Search application",
-  "dependencies": {}
+  "dependencies": {},
+  "engines": {
+    "node": ">=18"
+  }
 }
