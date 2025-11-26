@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
             format: 'json'
         });
 
-        const searxngUrl = `https://search.inetol.net/search?${params.toString()}`;
+        const searxngUrl = `https://priv.au/search?${params.toString()}`;
         console.log('SearXNG URL:', searxngUrl);
         
         // Fetch from SearXNG with proper headers
