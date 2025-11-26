@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # Fera Search Frontend
+  fera-frontend:
+    image: nginx:alpine
+    container_name: fera-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"  # Only expose nginx port
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - searxng
+
+  # SearXNG Search Engine
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    restart: unless-stopped
+    # REMOVE ports - no need to expose SearXNG directly
+    # ports:
+    #   - "8080:8080"
+    volumes:
+      - ./searxng-settings:/etc/searxng:rw
+    environment:
+      - SEARXNG_SECRET=your-super-secret-key-12345
+      - SEARXNG_BASE_URL=http://searxng:8080/  # Use container name
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+
+  # Redis for Caching
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: unless-stopped
+    command: redis-server --save 60 1 --loglevel warning
+
+  # Ngrok for Public Access (Optional)
+  ngrok:
+    image: wernight/ngrok:latest
+    container_name: ngrok
+    restart: unless-stopped
+    ports:
+      - "4040:4040"
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN:-}
+      - NGROK_PROTOCOL=http
+      - NGROK_PORT=fera-frontend:80
+    depends_on:
+      - fera-frontend
