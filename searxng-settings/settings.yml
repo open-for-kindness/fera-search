@@ -1,0 +1,16 @@
+general:
+  debug: false
+  instance_name: "Fera Search"
+
+server:
+  secret_key: "your-super-secret-key-12345"
+  limiter: false
+  public_instance: false
+
+# Use container name for internal communication
+ui:
+  static_use_hash: false
+  default_locale: "en"
+  query_in_title: true
+
+# ... rest of your settings
