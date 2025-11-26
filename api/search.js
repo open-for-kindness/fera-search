@@ -20,12 +20,12 @@ module.exports = async (req, res) => {
         results: [
             {
                 title: 'Test Result 1',
-                url: 'https://example.com/1',
+                url: 'https://search.inetol.net/',
                 content: 'This is a test result from the API.'
             },
             {
                 title: 'Test Result 2', 
-                url: 'https://example.com/2',
+                url: 'https://example.com/',
                 content: 'Another test result.'
             }
         ]
